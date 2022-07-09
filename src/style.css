@@ -1,0 +1,22 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-images-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.card-image {
+  height: 70px;
+  width: 60px;
+}
+
+.point-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;;
+}
