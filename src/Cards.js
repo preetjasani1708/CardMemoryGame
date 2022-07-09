@@ -9,6 +9,7 @@ export default function Cards() {
   const [pointsOfUser1, setPointsOfUser1] = useState(0);
   const [pointsOfUser2, setPointsOfUser2] = useState(0);
   const [openCards, setOpenCards] = useState([]);
+  const [winner, setWinner] = useState('');
 
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -64,6 +65,7 @@ export default function Cards() {
     setPointsOfUser1(0);
     setPointsOfUser2(0);
     setOpenCards([]);
+    setWinner('');
     createCardBoard();
   };
 
@@ -72,14 +74,26 @@ export default function Cards() {
   }, []);
 
   useEffect(() => {
-    if(openCards.length && openCards.length === images.length){
-      setTimeout(() => reset(), 2000)
+    if (openCards.length && openCards.length === images.length) {
+      if (pointsOfUser1 > pointsOfUser2) {
+        setWinner('Winner is User 1');
+      } else {
+        setWinner('Winner is User 2');
+      }
+      setTimeout(() => reset(), 5000);
     }
-  }, [openCards.length])
+  }, [openCards.length]);
 
   return (
     <div className="main-wrapper">
-      <div className="user-turn-info">Now User {isUser1Turn ? '1' : '2'} Turn</div>
+      {winner ? (
+        <div className="winner-info">{winner}</div>
+      ) : (
+        <div className="user-turn-info">
+          Now User {isUser1Turn ? '1' : '2'} Turn
+        </div>
+      )}
+
       {images.length ? (
         <div className="card-images-wrapper">
           {images?.map((image, index) => {
