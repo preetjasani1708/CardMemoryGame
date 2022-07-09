@@ -25,7 +25,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-.user-turn-info {
+.user-turn-info,
+.reset-game-info {
   display: flex;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
