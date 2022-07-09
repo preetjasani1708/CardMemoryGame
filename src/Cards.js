@@ -10,6 +10,9 @@ export default function Cards() {
   const [pointsOfUser2, setPointsOfUser2] = useState(0);
   const [openCards, setOpenCards] = useState([]);
   const [winner, setWinner] = useState('');
+  const [countdownForResetGame, setCountdownForResetGame] = useState(5);
+
+  let intervalId;
 
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -43,7 +46,10 @@ export default function Cards() {
             setPointsOfUser2((previousState) => previousState + 1);
           }
         } else {
-          setIsUser1Turn((previousState) => !previousState);
+          setTimeout(
+            () => setIsUser1Turn((previousState) => !previousState),
+            1000
+          );
         }
         setTimeout(() => {
           setCardsChosenIds([]);
@@ -66,6 +72,7 @@ export default function Cards() {
     setPointsOfUser2(0);
     setOpenCards([]);
     setWinner('');
+    setCountdownForResetGame(5);
     createCardBoard();
   };
 
@@ -80,14 +87,36 @@ export default function Cards() {
       } else {
         setWinner('Winner is User 2');
       }
-      setTimeout(() => reset(), 5000);
+      intervalId =
+        !intervalId &&
+        setInterval(() => {
+          if (countdownForResetGame > 0) {
+            setCountdownForResetGame((previousState) => previousState - 1);
+          }
+        }, 1000);
     }
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [openCards.length]);
+
+  useEffect(() => {
+    if (countdownForResetGame === 0) {
+      clearInterval(intervalId);
+      reset();
+    }
+  }, [countdownForResetGame]);
 
   return (
     <div className="main-wrapper">
       {winner ? (
-        <div className="winner-info">{winner}</div>
+        <>
+          <div className="winner-info">{winner}</div>
+          <div className="reset-game-info">
+            Game Reset in {countdownForResetGame}.
+          </div>
+        </>
       ) : (
         <div className="user-turn-info">
           Now User {isUser1Turn ? '1' : '2'} Turn
