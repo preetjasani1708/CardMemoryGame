@@ -1,22 +1,63 @@
+.app-wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 40px;
+}
+
 .main-wrapper {
   display: flex;
   flex-direction: column;
 }
 
+.user-turn-info {
+  display: flex;
+  justify-content: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .card-images-wrapper {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 20px;
+  flex-flow: row wrap;
+  margin: 20px 0px;
+  gap: 5px;
 }
 
 .card-image {
   height: 70px;
   width: 60px;
+  border-radius: 10px;
+  display: flex;
 }
 
 .point-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.point-section button {
+  width: auto;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: lightcyan;
+  font-family: Arial, Helvetica, sans-serif;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  letter-spacing: 0.1em;
+}
+
+.point-section button:hover {
+  cursor: pointer;
 }

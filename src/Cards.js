@@ -79,7 +79,7 @@ export default function Cards() {
 
   return (
     <div className="main-wrapper">
-      <div>User {isUser1Turn ? '1' : '2'} Turn</div>
+      <div className="user-turn-info">Now User {isUser1Turn ? '1' : '2'} Turn</div>
       {images.length ? (
         <div className="card-images-wrapper">
           {images?.map((image, index) => {
